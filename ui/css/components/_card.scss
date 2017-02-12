@@ -1,0 +1,90 @@
+.card {
+  padding: 4px;
+  box-shadow: none;
+  border: $default-border;
+  border-radius: 4px;
+  margin: 10px;  
+  .title {
+    line-height: 1.4;
+    padding: 4px 8px;
+    text-align: center;
+    border-bottom: $default-border;
+    background-color: darken($gray, 5);
+  }
+  .image {
+    border: $default-border;
+    border-radius: 4px;
+    img {
+      border-radius: 4px;
+    }
+  }
+  .media-content {
+    background-color: $gray;
+    margin-top: 4px;
+    border: $default-border;
+    max-height: 240px;
+    min-height: 240px;
+  }
+}
+.container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 30px;
+  min-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 480px) {
+  .card {
+    min-width: 90%;  
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 1192px) and (min-width: 480px) {
+  .card {
+    min-width: 45%;  
+    max-width: 45%;
+  }
+}
+@media screen and (min-width: 1192px) {
+  .card {
+    min-width: 15%;  
+    max-width: 15%;
+  }
+}
+.control:not(:last-child) {
+  margin-bottom: 0;
+}
+.search-box {
+  padding: 8px;  
+  background-color: $gray;
+  border-bottom: $default-border;
+  border-radius: 4px;    
+  min-height: 58px;
+  .input {
+    transition: $transition;
+    font-size: 1.3em;
+    box-shadow: none;
+    &[type=search] {
+      border-radius: 4px;
+    }
+    &:focus, &:hover {
+      border-color: darken($gray, 15);
+    }    
+  }
+  i.fa {
+    margin-top: 10px;
+    margin-left: 12px;
+    transition: $transition;
+  }
+}
+.count-label {
+  margin-left: 8px;
+  border-radius: 4px;
+  height: 41px;
+  i.fa {
+    margin-top: -2px;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+}

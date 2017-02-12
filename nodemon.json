@@ -1,0 +1,4 @@
+{
+  "quiet": true,
+  "ignore": ["ui/**", "public/**", "fuse.js"]
+}

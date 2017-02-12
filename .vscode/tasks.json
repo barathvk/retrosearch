@@ -11,6 +11,11 @@
       "taskName": "dev",
       "args": ["run", "dev"],
       "isBuildCommand": true
+    },
+    {
+      "taskName": "ui",
+      "args": ["run", "ui"],
+      "isBuildCommand": false
     }
   ]
 }
