@@ -1,0 +1,57 @@
+{
+  "name": "retrosearch",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "async": "^2.1.4",
+    "axios": "^0.15.3",
+    "cheerio": "^0.22.0",
+    "compression": "^1.6.2",
+    "config": "^1.25.1",
+    "cors": "^2.8.1",
+    "cross-env": "^3.1.4",
+    "express": "^4.14.1",
+    "faye": "^1.2.4",
+    "igdb-api-node": "^2.0.2",
+    "js-yaml": "^3.8.1",
+    "jsondown": "^0.1.1",
+    "later": "^1.2.0",
+    "level-exists": "^2.0.2",
+    "levelup": "^1.3.3",
+    "lodash": "^4.17.4",
+    "mani": "^0.1.0",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "outdent": "^0.3.0",
+    "q": "^1.4.1",
+    "rimraf": "^2.5.4",
+    "simple-node-logger": "^0.93.14",
+    "slug": "^0.9.1",
+    "then-levelup": "^1.0.2",
+    "yql": "^1.0.2"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon --quiet --harmony-async-await index.js",
+    "test": "cross-env NODE_ENV=test mocha --watch",
+    "start": "cross-env NODE_ENV=development node --harmony-async-await index.js"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "standard": {
+    "global": [
+      "it",
+      "describe",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "config",
+      "logger",
+      "outdent",
+      "_",
+      "axios"
+    ]
+  }
+}
