@@ -21,7 +21,7 @@ const scrape = async () => {
   const list = await data.list()
   data.list().then(all => {
     search.all(Object.keys(all).map(a => {
-      all[a].id = a
+      all[a]._id = a
       return all[a]
     }))
   })
@@ -33,13 +33,16 @@ if (!fs.existsSync(config.data_dir)) {
   mkdirp.sync(config.data_dir)
   scrape()
 }
+if (!fs.existsSync(config.download_dir)) {
+  mkdirp.sync(config.download_dir)
+}
 logger.info('Starting indexer...')
 const schedule = later.parse.text(`every ${config.scraper.interval}`)
 later.setInterval(scrape, schedule)
 if (!newdir && process.env.NODE_ENV !== 'development') scrape()
 data.list().then(all => {
   search.all(Object.keys(all).map(a => {
-    all[a].id = a
+    all[a]._id = a
     return all[a]
   }))
 })

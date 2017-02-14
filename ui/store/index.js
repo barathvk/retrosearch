@@ -18,6 +18,11 @@ export default class {
     this.kw = kw
     this.games = g.data
   }
+  @action async reload () {
+    this.notify('Restarting EmulationStation', 'warning')
+    await axios.get('/api/reload')
+    this.notify('Restarted EmulationStation', 'success')
+  }
   @action async loadMore () {
     this.pagecount += 1
     if (this.pagecount <= this.games.pages) {
@@ -31,7 +36,12 @@ export default class {
       this.pagecount -= 1
     }
   }
-  @action notify (message, intent) {
+  @action async download (id) {
+    const meta = _.first(this.games.results.filter(g => g.id === id))
+    await axios.get(`/api/download/${id}`)
+    this.notify(`Downloaded ${meta.title}`, 'success')
+  }
+  @action notify (message, intent, onClick) {
     let icon
     switch (intent) {
       case 'primary':
@@ -41,18 +51,25 @@ export default class {
         icon = 'check'
         break
       case 'danger':
-        icon = 'error'
+        icon = 'exclamation'
+        break
+      case 'warning':
+        icon = 'exclamation-triangle'
         break
       default:
         icon = 'question'
+        break
     }
     this.notification = {
       message,
       intent,
-      icon
+      icon,
+      onClick
     }
-    setTimeout(() => {
-      this.notification = null
-    }, 3000)
+    if (!onClick) {
+      setTimeout(() => {
+        this.notification = null
+      }, 3000)
+    }
   }
 }

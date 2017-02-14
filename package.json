@@ -10,6 +10,7 @@
     "config": "^1.25.1",
     "cors": "^2.8.1",
     "cross-env": "^3.1.4",
+    "download": "^5.0.3",
     "express": "^4.14.1",
     "faye": "^1.2.4",
     "igdb-api-node": "^2.0.2",
@@ -27,6 +28,7 @@
     "outdent": "^0.3.0",
     "q": "^1.4.1",
     "rimraf": "^2.5.4",
+    "shelljs": "^0.7.6",
     "simple-node-logger": "^0.93.14",
     "slug": "^0.9.1",
     "then-levelup": "^1.0.2",
@@ -74,7 +76,8 @@
       "logger",
       "outdent",
       "_",
-      "axios"
+      "axios",
+      "exec"
     ]
   }
 }

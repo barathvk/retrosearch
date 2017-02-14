@@ -5,14 +5,18 @@ export default class extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
+    this.onClick = () => {
+      if (this.props.onClick) this.props.store.notification.onClick()
+      else this.props.store.notification = null
+    }
   }
   render () {
     const props = this.props.store.notification
     return (
-      <div className={`flex-row notification animated bounceInUp flex-center is-${props.intent}`}>
+      <a className={`flex-row notification animated bounceInUp flex-center is-${props.intent}`} onClick={this.onClick}>
         <span className={`fa fa-${props.icon}`} />
         {props.message}
-      </div>
+      </a>
     )
   }
 }

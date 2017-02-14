@@ -1,8 +1,9 @@
 port: 3000
 scraper:
-  base_url: http://www.loveroms.com/roms
-  interval: '60 mins'
+  base_url: http://www.loveroms.com
+  interval: '10 mins'
 data_dir: ./data
+download_dir: /home/pi/RetroPie/roms
 consoles:
   - title: Gameboy Advance
     lr: gameboy-advance

@@ -1,29 +1,52 @@
 .card {
-  padding: 4px;
-  box-shadow: none;
-  border: $default-border;
+  padding: 8px;  
   border-radius: 4px;
-  margin: 10px;  
+  margin: 10px;    
   .title {
     line-height: 1.4;
     padding: 4px 8px;
-    text-align: center;
-    border-bottom: $default-border;
-    background-color: darken($gray, 5);
+    text-align: center;    
+    border-bottom: $dark-border;
+    background-color: lighten($darkgray, 5);
+    color: #fff;
+    &:not(.is-front) {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }    
+    &.is-front {      
+      border: $dark-border;            
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;  
+    }    
   }
-  .image {
-    border: $default-border;
+  .card-footer {
+    border-top: $dark-border;
+    background-color: lighten($darkgray, 5);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; 
+    .card-footer-item {
+      transition: $transition;
+      &:hover {
+        color: $gray;
+      }
+    }
+  }
+  .image {    
+    border-bottom: none;
     border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;        
     img {
-      border-radius: 4px;
+      border-radius: 4px;      
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;        
     }
   }
   .media-content {
-    background-color: $gray;
-    margin-top: 4px;
-    border: $default-border;
-    max-height: 240px;
-    min-height: 240px;
+    background-color: $darkgray;    
+    color: #fff;
+    border: $dark-border;
+    border-radius: 4px;
   }
 }
 .container {

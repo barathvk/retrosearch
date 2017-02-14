@@ -17,6 +17,17 @@ export default class extends React.Component {
       if (e.target.value.length >= 0) this.props.store.search(e.target.value)
       else this.props.store.load()
     }
+    this.reload = () => {
+      this.props.store.reload()
+    }
+    this.select = e => {
+      if (this.state.selected === e.id) this.state.selected = null
+      else this.state.selected = e.id
+      this.setState(this.state)
+    }
+    this.download = e => {
+      this.props.store.download(e)
+    }
     this.more = async e => {
       if (e && this.state.hasMore) {
         this.state.isLoading = true
@@ -38,18 +49,39 @@ export default class extends React.Component {
     if (store.games && store.games.results) {
       items = store.games.results.map((r, i) => {
         return (
-          <div className='card flex-1 flex-column animated fadeInDown' key={i}>
-            <div className='card-image'>
-              <figure className='image is-1by1'>
-                <img src={r.image} />
-              </figure>
-            </div>
-            <div className='media-content fill'>
-              <p className='title is-4 flex-row flex-center-align'>
-                <i className='fa fa-tag' />
-                <span className='truncate'>{r.title}</span>
-              </p>
-            </div>
+          <div className='card flex-1 flex-column animated pulse' key={i}>
+            {
+              this.state.selected !== r.id && (
+                <a className='fill flex-column animated flipInX' onClick={this.select.bind(this, r)}>
+                  <div className='card-image'>
+                    <figure className='image is-1by1'>
+                      <img src={r.image} />
+                    </figure>
+                  </div>
+                  <p className='title is-4 flex-row flex-center-align is-front'>
+                    <i className='fa fa-tag' />
+                    <span className='truncate'>{r.title}</span>
+                  </p>
+                </a>
+              )
+            }
+            {
+              this.state.selected === r.id && (
+                <div className='media-content fill flex-column animated flipInX'>
+                  <a className='title is-4 flex-row flex-center-align' onClick={this.select.bind(this, r)}>
+                    <i className='fa fa-tag' />
+                    <span className='truncate'>{r.title}</span>
+                  </a>
+                  <a className='card-body fill' onClick={this.select.bind(this, r)} />
+                  <footer className='card-footer'>
+                    <a className='card-footer-item' onClick={this.download.bind(this, r)}>
+                      <i className='fa fa-download' />
+                      Download
+                    </a>
+                  </footer>
+                </div>
+              )
+            }
           </div>
         )
       })
@@ -67,20 +99,19 @@ export default class extends React.Component {
           store.games && (
             <div className='flex-column fill'>
               <p className='control search-box has-icon has-addons flex-row flex-center-align'>
-                <input type='search' placeholder='Search' className='input fill' value={this.state.kw || ''} onChange={this.search} />
+                <input type='search' placeholder='Retrosearch!' className='input fill' value={this.state.kw || ''} onChange={this.search} />
                 <span className='icon'>
                   <i className='fa fa-search' />
                 </span>
-                <span className='flex-row flex-center-align count-label tag is-info is-medium'>
+                <button className='flex-row flex-center-align count-label button is-info is-medium' onClick={this.reload}>
                   <i className='fa fa-gamepad' />
                   {store.games.total} games [Page {store.pagecount} of {store.games.pages}]
-                </span>
+                </button>
               </p>
               {
                 store.games.results && (
                   <div className='container flex-row flex-wrap'>
                     {items}
-                    <VisibilitySensor onChange={this.more} />
                     {
                       this.state.isLoading && (
                         <div className='flex-column flex-center'>
@@ -88,6 +119,7 @@ export default class extends React.Component {
                         </div>
                       )
                     }
+                    <VisibilitySensor onChange={this.more} />
                   </div>
                 )
               }
