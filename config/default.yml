@@ -4,6 +4,10 @@ scraper:
   interval: '60 mins'
 download_dir: /home/pi/RetroPie/roms
 es: server.local/elasticsearch
+retropie:
+  ip: 10.0.0.41
+  user: pi
+  password: raspberry
 consoles:
   - title: Gameboy Advance
     lr: gameboy-advance
