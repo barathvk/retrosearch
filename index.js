@@ -39,7 +39,6 @@ if (argv.scrape) {
   logger.info('Starting indexer...')
   const schedule = later.parse.text(`every ${config.scraper.interval}`)
   later.setInterval(scrape, schedule)
-  if (!newdir && process.env.NODE_ENV !== 'development') scrape()
   data.list().then(all => {
     search.all(Object.keys(all).map(a => {
       all[a]._id = a
