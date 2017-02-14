@@ -2,11 +2,8 @@ port: 3000
 scraper:
   base_url: http://www.loveroms.com
   interval: '60 mins'
-data_dir: ./data
 download_dir: /home/pi/RetroPie/roms
-redis:
-  host: 10.0.0.43
-  port: 6379
+es: server.local/elasticsearch
 consoles:
   - title: Gameboy Advance
     lr: gameboy-advance
