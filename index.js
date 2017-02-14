@@ -28,29 +28,38 @@ const scrape = async () => {
   logger.info(`Indexed ${Object.keys(list).length} roms`)
 }
 if (argv.clean) rimraf.sync(config.data_dir)
-if (!fs.existsSync(config.data_dir)) {
-  newdir = true
-  mkdirp.sync(config.data_dir)
-  scrape()
+if (argv.scrape) {
+  if (!fs.existsSync(config.data_dir)) {
+    mkdirp.sync(config.data_dir)
+  }
+  scrape().then(() => {
+    logger.info('Process complete')
+  })
+} else {
+  if (!fs.existsSync(config.data_dir)) {
+    newdir = true
+    mkdirp.sync(config.data_dir)
+    scrape()
+  }
+  if (!fs.existsSync(config.download_dir)) {
+    mkdirp.sync(config.download_dir)
+  }
+  logger.info('Starting indexer...')
+  const schedule = later.parse.text(`every ${config.scraper.interval}`)
+  later.setInterval(scrape, schedule)
+  if (!newdir && process.env.NODE_ENV !== 'development') scrape()
+  data.list().then(all => {
+    search.all(Object.keys(all).map(a => {
+      all[a]._id = a
+      return all[a]
+    }))
+  })
+  bayeux.attach(server)
+  api.app.use('/', express.static(path.resolve('./public')))
+  api.app.get('*', (req, res) => {
+    res.sendFile(path.resolve('./index.html'))
+  })
+  server.listen(config.port, () => {
+    logger.info(`Started Retrosearch server on port ${config.port}`)
+  })
 }
-if (!fs.existsSync(config.download_dir)) {
-  mkdirp.sync(config.download_dir)
-}
-logger.info('Starting indexer...')
-const schedule = later.parse.text(`every ${config.scraper.interval}`)
-later.setInterval(scrape, schedule)
-if (!newdir && process.env.NODE_ENV !== 'development') scrape()
-data.list().then(all => {
-  search.all(Object.keys(all).map(a => {
-    all[a]._id = a
-    return all[a]
-  }))
-})
-bayeux.attach(server)
-api.app.use('/', express.static(path.resolve('./public')))
-api.app.get('*', (req, res) => {
-  res.sendFile(path.resolve('./index.html'))
-})
-server.listen(config.port, () => {
-  logger.info(`Started Retrosearch server on port ${config.port}`)
-})
