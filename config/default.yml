@@ -11,3 +11,60 @@ consoles:
   - title: Atari 2600
     lr: atari-2600
     rp: atari2600
+  - title: Amstrad CPC
+    lr: amstrad-cpc
+    rp: amstradcpc
+  - title: Atari 7800
+    lr: atari-7800
+    rp: atari7800
+  - title: Atari Lynx
+    lr: atari-lynx
+    rp: atarilynx
+  - title: Game Gear
+    lr: game-gear
+    rp: gamegear
+  - title: Gameboy
+    lr: gameboy
+    rp: gb
+  - title: Gameboy Color
+    lr: gameboy-color
+    rp: gbc
+  - title: Sega Genesis
+    lr: sega-genesis
+    rp: genesis
+  - title: MSX
+    lr: msx-computer
+    rp: msx
+  - title: Nintendo 64
+    lr: nintendo-64
+    rp: n64
+  - title: NeoGeo
+    lr: neo-geo
+    rp: neogeo
+  - title: NES
+    lr: nintendo
+    rp: nes
+  - title: Neo Geo Pocket
+    lr: neo-geo-pocket
+    rp: ngp
+  - title: Neo Geo Pocket Color
+    lr: neo-geo-pocket-color
+    rp: ngpc
+  - title: PSP
+    lr: playstation-portable
+    rp: psp
+  - title: PS2
+    lr: playstation-2
+    rp: psx
+  - title: Sega 32X
+    lr: sega-32x
+    rp: sega32x
+  - title: Sega SG 1000
+    lr: sega-sg1000
+    rp: sg-1000
+  - title: SNES
+    lr: super-nintendo
+    rp: snes
+  - title: ZX Spectrum
+    lr: zx-spectrum
+    rp: zxspectrum
