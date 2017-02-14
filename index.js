@@ -29,18 +29,10 @@ const scrape = async () => {
 }
 if (argv.clean) rimraf.sync(config.data_dir)
 if (argv.scrape) {
-  if (!fs.existsSync(config.data_dir)) {
-    mkdirp.sync(config.data_dir)
-  }
   scrape().then(() => {
     logger.info('Process complete')
   })
 } else {
-  if (!fs.existsSync(config.data_dir)) {
-    newdir = true
-    mkdirp.sync(config.data_dir)
-    scrape()
-  }
   if (!fs.existsSync(config.download_dir)) {
     mkdirp.sync(config.download_dir)
   }
